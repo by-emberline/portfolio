@@ -14,6 +14,7 @@ import {
   X, Menu, Palette, GraduationCap, MapPin,
   Camera, Send, Linkedin, CheckCircle2, AlertCircle,
   Eye, Users, Github, Download, ChevronLeft, ChevronRight,
+  Monitor, Server, Award, Clock, CheckCircle,
 } from "lucide-react";
 import { useListReviews, useCreateReview, getListReviewsQueryKey } from "@workspace/api-client-react";
 import { useQueryClient } from "@tanstack/react-query";
@@ -37,6 +38,7 @@ const THEMES: { id: Theme; label: string; color: string }[] = [
 const NAV_ITEMS = [
   { label: "Home",      target: "hero" },
   { label: "Projects",  target: "projects" },
+  { label: "Services",  target: "services" },
   { label: "Skills",    target: "skills" },
   { label: "Education", target: "education" },
   { label: "Reviews",   target: "reviews" },
@@ -264,6 +266,105 @@ function FloatingNav() {
 }
 
 /* ============================================================
+   SERVICES
+   ============================================================ */
+function Services() {
+  const [expanded, setExpanded] = useState<number | null>(null);
+
+  const services = [
+    {
+      id: 1,
+      title: "Web Development",
+      icon: Code2,
+      short: "Modern, responsive, and high-performance websites.",
+      full: "I specialize in building impressive dynamic websites using React, Next.js, and Tailwind CSS. I handle both frontend and backend development for complete web solutions.",
+      color: "#1dd4e8"
+    },
+    {
+      id: 2,
+      title: "Software Development",
+      icon: Monitor,
+      short: "Custom software and desktop/web applications.",
+      full: "I develop custom software solutions with focus on performance, scalability, maintenance, and seamless API integrations.",
+      color: "#a855f7"
+    },
+    {
+      id: 3,
+      title: "Backend Development",
+      icon: Server,
+      short: "Robust and secure server-side systems.",
+      full: "I design and build efficient backend systems, database architecture (MySQL), API development, and ensure smooth data management.",
+      color: "#34d399"
+    }
+  ];
+
+  return (
+    <section id="services" className="py-32 px-6 md:px-12 lg:px-24 bg-white/[0.015]">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Services I Offer</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">Professional web & software development with reliable support</p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {services.map((service, i) => {
+            const Icon = service.icon;
+            return (
+              <motion.div
+                key={service.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                className="rounded-3xl p-8 flex flex-col h-full transition-all duration-300 hover:scale-[1.02]"
+                style={{
+                  background: "rgba(255,255,255,0.07)",
+                  border: `1px solid rgba(255,255,255,0.15)`,
+                }}
+              >
+                <div className="mb-6">
+                  <Icon size={48} style={{ color: service.color }} />
+                </div>
+                <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
+                <p className="text-muted-foreground mb-6 flex-1">{service.short}</p>
+
+                <button
+                  onClick={() => setExpanded(expanded === service.id ? null : service.id)}
+                  className="text-primary hover:underline flex items-center gap-2 text-sm font-medium self-start"
+                >
+                  {expanded === service.id ? "Show less" : "View more"} →
+                </button>
+
+                <AnimatePresence>
+                  {expanded === service.id && (
+                    <motion.p
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="text-sm text-muted-foreground mt-4 pt-4 border-t border-white/10"
+                    >
+                      {service.full}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        <div className="text-center mt-12 text-sm text-muted-foreground">
+          ✅ 24/7 Online Support • 2 Fully Completed Projects • Fast Delivery
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============================================================
    MAIN CONTENT
    ============================================================ */
 function MainContent() {
@@ -282,6 +383,7 @@ function MainContent() {
       <FloatingNav />
       <Hero />
       <Projects />
+      <Services />
       <Skills />
       <Education />
       <Reviews />
@@ -369,8 +471,29 @@ function Hero() {
             </h2>
 
             <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl font-light leading-relaxed mb-10">
-              A web developer crafting premium digital products that feel unmistakably polished  from sleek landing pages to full-stack apps.
+              A passionate web developer crafting premium digital products — from sleek landing pages to full-stack applications.
             </p>
+
+            {/* Stats Cards */}
+            <div className="grid grid-cols-3 gap-4 mb-10">
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-5 text-center">
+                <Award className="w-8 h-8 text-primary mx-auto mb-2" />
+                <div className="text-2xl font-bold">2+ Years</div>
+                <div className="text-sm text-muted-foreground">Experience</div>
+              </div>
+              
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-5 text-center">
+                <CheckCircle className="w-8 h-8 text-primary mx-auto mb-2" />
+                <div className="text-2xl font-bold">2</div>
+                <div className="text-sm text-muted-foreground">Completed Projects</div>
+              </div>
+              
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-5 text-center">
+                <Clock className="w-8 h-8 text-primary mx-auto mb-2" />
+                <div className="text-2xl font-bold">24/7</div>
+                <div className="text-sm text-muted-foreground">Online Support</div>
+              </div>
+            </div>
 
             <div className="flex flex-wrap items-center gap-4">
               <button
@@ -934,6 +1057,9 @@ const skillGroups: { label: string; skills: SkillDef[] }[] = [
   },
 ];
 
+/* ============================================================
+   SERVICES SECTION
+   ============================================================ */
 function Skills() {
   return (
     <section id="skills" className="py-32 px-6 md:px-12 lg:px-24 bg-white/[0.015]">
