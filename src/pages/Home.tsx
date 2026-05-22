@@ -13,7 +13,7 @@ import {
   Mail, Phone, ArrowRight, Star, ExternalLink,
   X, Menu, Palette, GraduationCap, MapPin,
   Camera, Send, Linkedin, CheckCircle2, AlertCircle,
-  Eye, Users, Github, Download,
+  Eye, Users, Github, Download, ChevronLeft, ChevronRight,
 } from "lucide-react";
 import { useListReviews, useCreateReview, getListReviewsQueryKey } from "@workspace/api-client-react";
 import { useQueryClient } from "@tanstack/react-query";
@@ -415,76 +415,175 @@ type Project = {
   title: string;
   desc: string;
   fullDesc: string;
+  hotelName: string;
+  location: string;
+  images: string[];
+  video?: string;
   tech: string[];
   github: string;
   live: string;
   accent: string;
 };
 
-const projects: Project[] = [
+  const projects: Project[] = [
   {
     id: 1,
-    title: "Portfolio Site",
-    desc: "My personal portfolio built with React, Framer Motion & iOS 26 glass aesthetics.",
-    fullDesc: "A fully custom dark-mode portfolio featuring animated particle backgrounds, 5 rotating color themes, liquid glass UI, EmailJS contact form, and a database-backed reviews system. Built entirely from scratch as a Grade 10 student.",
-    tech: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "PostgreSQL"],
-    github: "https://github.com/by-emberline",
+    title: "Punyu International Hotel",
+    desc: "An elegant, modern hotel built for travellers who expect more.",
+    fullDesc: "An elegant, modern hotel built for travellers who expect more — refined rooms, honest food and the warm spirit of northern Namibia.",
+    hotelName: "Punyu International Hotel",
+    location: "Ondangwa, Oshikoto, Namibia",
+    images: [
+      "/projects/punyu-home.png",
+      "/projects/punyu-phone-home.png",
+      "/projects/punyu-map.png"
+    ],
+    tech: ["Next.js", "Tailwind CSS", "TypeScript", "Framer Motion"],
+    github: "#",
     live: "#",
     accent: "#1dd4e8",
   },
   {
     id: 2,
-    title: "Glass Commerce",
-    desc: "E-commerce platform with a liquid glass aesthetic and smooth checkout flow.",
-    fullDesc: "An e-commerce concept featuring full product browsing, cart management, and a silky smooth checkout experience. The UI uses a frosted glass design system inspired by Apple's latest guidelines, with dark mode by default and animated transitions throughout.",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Stripe"],
-    github: "https://github.com/by-emberline",
+    title: "Callie's Game Lodge",
+    desc: "An exclusive African sanctuary nestled near Tsumeb.",
+    fullDesc: "An exclusive African sanctuary. Six luxury chalets, active waterhole and curated cuisine under the Namibian sky.",
+    hotelName: "Callie's Game Lodge",
+    location: "Tsumeb, Namibia",
+    images: [
+      "/projects/Callies-home.png",
+      "/projects/Callies-phone-home.png",
+      "/projects/Callies-map.png"
+    ],
+    tech: ["Next.js", "Tailwind CSS", "TypeScript"],
+    github: "#",
     live: "#",
     accent: "#a855f7",
   },
   {
     id: 3,
-    title: "CreativeNet",
-    desc: "Social network for creative professionals to share and discover work.",
-    fullDesc: "A social platform designed specifically for artists, designers, and developers. Features include a masonry feed, follow/like system, real-time notifications, and a profile builder. Built with a focus on clean typography and beautiful content presentation.",
-    tech: ["React", "Node.js", "PostgreSQL", "Socket.io"],
-    github: "https://github.com/by-emberline",
+    title: "Conductor's Inn",
+    desc: "A vintage railway reborn as a unique stay.",
+    fullDesc: "Two disused rail carriages and farmhouse chalets turned into a one-of-a-kind retreat 8 km outside Tsumeb.",
+    hotelName: "Conductor's Inn",
+    location: "Tsumeb, Oshikoto, Namibia",
+    images: [
+      "/projects/Conductor's-home.png",
+      "/projects/Conductor's-phone-home.png",
+      "/projects/Conductor's-map.png"
+    ],
+    tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
+    github: "#",
     live: "#",
     accent: "#f43f73",
   },
   {
     id: 4,
-    title: "AI Write",
-    desc: "AI-powered writing assistant with a distraction-free editor interface.",
-    fullDesc: "A minimal writing tool that uses AI to help with writer's block, grammar, and style. The editor is inspired by iA Writer — clean, focused, and beautifully typeset. Supports markdown, export to PDF, and cloud sync.",
-    tech: ["Next.js", "OpenAPI", "TypeScript", "Tailwind CSS"],
-    github: "https://github.com/by-emberline",
+    title: "Kupferquelle Resort",
+    desc: "An oasis at the gateway to Etosha.",
+    fullDesc: "An oasis at the gateway to Etosha. Located in central Tsumeb, a short drive from the museum and Lake Otjikoto.",
+    hotelName: "Kupferquelle Resort",
+    location: "Tsumeb, Namibia",
+    images: [
+      "/projects/Kupferquelle-home.png",
+      "/projects/Kupferquelle-phone-home.png",
+      "/projects/Kupferquelle-map.png"
+    ],
+    tech: ["Next.js", "Tailwind CSS", "TypeScript"],
+    github: "#",
     live: "#",
     accent: "#34d399",
   },
   {
     id: 5,
-    title: "3D Configurator",
-    desc: "Interactive 3D product configurator for custom sneaker design.",
-    fullDesc: "A browser-based 3D product configurator that lets users customize sneaker colorways in real time. Built with Three.js and React Three Fiber, featuring environment lighting, smooth camera orbiting, and a color picker that updates the model in milliseconds.",
-    tech: ["React", "Three.js", "TypeScript", "Blender"],
-    github: "https://github.com/by-emberline",
+    title: "La Rochelle",
+    desc: "A timeless retreat in the heart of the bushveld.",
+    fullDesc: "Ten thousand hectares of private wilderness with European warmth and Namibian skies.",
+    hotelName: "La Rochelle",
+    location: "Tsumeb, Namibia",
+    images: [
+      "/projects/La Rochelle-home.png",
+      "/projects/La Rochelle-phone-home.png",
+      "/projects/La Rochelle-map.png"
+    ],
+    tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
+    github: "#",
     live: "#",
     accent: "#f59e0b",
   },
   {
     id: 6,
-    title: "FlowTask",
-    desc: "Minimalist task management app with drag-and-drop and focus mode.",
-    fullDesc: "A productivity app built around the idea that less is more. Features include kanban boards, drag-and-drop reordering, a Pomodoro-style focus mode, and a beautiful daily summary view. Designed to feel calm and intentional.",
-    tech: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    github: "https://github.com/by-emberline",
+    title: "Red Hills Guesthouse",
+    desc: "A quiet luxury retreat in the heart of Tsumeb.",
+    fullDesc: "A quiet luxury retreat in the heart of Tsumeb with elegant rooms and warm hospitality.",
+    hotelName: "Red Hills Guesthouse",
+    location: "Tsumeb, Namibia",
+    images: [
+      "/projects/Red hills-home.png",
+      "/projects/Red hills-phone-home.png",
+      "/projects/Red hills-map.png"
+    ],
+    tech: ["Next.js", "Tailwind CSS"],
+    github: "#",
     live: "#",
-    accent: "#1dd4e8",
+    accent: "#8b1e2f",
   },
+  {
+    id: 7,
+    title: "Strand Hotel Swakopmund",
+    desc: "Beachfront luxury where the Atlantic meets warm hospitality.",
+    fullDesc: "Beachfront luxury with world-class dining and unforgettable coastal moments.",
+    hotelName: "Strand Hotel",
+    location: "Swakopmund, Namibia",
+    images: [
+      "/projects/Strand-home.png",
+      "/projects/Strand-phone-home.png",
+      "/projects/Strand-map.png"
+    ],
+    tech: ["Next.js", "Tailwind CSS", "TypeScript"],
+    github: "#",
+    live: "#",
+    accent: "#004080",
+  },
+  {
+    id: 8,
+    title: "Tsumeb Theater Guesthouse",
+    desc: "Sleep in the spotlight. Vintage elegance meets theatrical charm.",
+    fullDesc: "A cozy guesthouse where vintage elegance meets theatrical charm in the heart of Tsumeb.",
+    hotelName: "Tsumeb Theater Guesthouse",
+    location: "Tsumeb, Namibia",
+    images: [
+      "/projects/Tsumeb Theater-home.png",
+      "/projects/Tsumeb Theater-phone-home.png",
+      "/projects/Tsumeb Theater-map.png"
+    ],
+    tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
+    github: "#",
+    live: "#",
+    accent: "#3a2a1f",
+  },
+  {
+    id: 9,
+    title: "Victoria Guest House",
+    desc: "A quiet African retreat in the north of Namibia.",
+    fullDesc: "Family-run comfort with crisp linens and a peaceful courtyard in the heart of Tsumeb.",
+    hotelName: "Victoria Guest House",
+    location: "Tsumeb, Namibia",
+    images: [
+      "/projects/Victoria-home.png",
+      "/projects/Victoria-phone-home.png",
+      "/projects/Victoria-map.png"
+    ],
+    tech: ["Next.js", "Tailwind CSS"],
+    github: "#",
+    live: "#",
+    accent: "#2f4a2f",
+  }
 ];
 
 function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
+  const [imageIndex, setImageIndex] = useState(0);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", onKey);
@@ -494,6 +593,9 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
       document.body.style.overflow = "";
     };
   }, [onClose]);
+
+  const nextImage = () => setImageIndex((prev) => (prev + 1) % project.images.length);
+  const prevImage = () => setImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
 
   return (
     <motion.div
@@ -510,7 +612,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
         animate={{ scale: 1, y: 0, opacity: 1 }}
         exit={{ scale: 0.94, y: 16, opacity: 0 }}
         transition={{ duration: 0.3, type: "spring", damping: 22, stiffness: 280 }}
-        className="w-full max-w-2xl rounded-[2rem] overflow-hidden"
+        className="w-full max-w-3xl rounded-[2rem] overflow-hidden max-h-[90vh] overflow-y-auto"
         style={{
           background: "rgba(12,18,30,0.92)",
           backdropFilter: "blur(48px) saturate(180%)",
@@ -520,33 +622,90 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header gradient banner */}
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="fixed top-8 right-8 p-2 rounded-full text-white/40 hover:text-white hover:bg-white/10 transition-all z-[51]"
+        >
+          <X size={24} />
+        </button>
+
+        {/* Image Gallery */}
+        <div className="relative bg-black/40 overflow-hidden">
+          <img
+            src={project.images[imageIndex]}
+            alt={`${project.title} - Image ${imageIndex + 1}`}
+            className="w-full h-96 object-cover"
+          />
+          {project.images.length > 1 && (
+            <>
+              <button
+                onClick={prevImage}
+                className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 hover:bg-black/70 text-white transition-all z-10"
+              >
+                <ChevronLeft size={20} />
+              </button>
+              <button
+                onClick={nextImage}
+                className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 hover:bg-black/70 text-white transition-all z-10"
+              >
+                <ChevronRight size={20} />
+              </button>
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                {project.images.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setImageIndex(idx)}
+                    className="w-2 h-2 rounded-full transition-all"
+                    style={{
+                      background: idx === imageIndex ? project.accent : "rgba(255,255,255,0.3)",
+                    }}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+
+        {/* Header info */}
         <div
-          className="h-36 relative flex items-end p-6"
+          className="p-6 border-b"
           style={{
-            background: `linear-gradient(135deg, ${project.accent}22 0%, ${project.accent}10 50%, transparent 100%)`,
+            background: `linear-gradient(135deg, ${project.accent}10 0%, transparent 100%)`,
             borderBottom: "1px solid rgba(255,255,255,0.08)",
           }}
         >
-          <div
-            className="absolute inset-0 opacity-30"
-            style={{
-              background: `radial-gradient(ellipse 80% 100% at 20% 50%, ${project.accent}40, transparent)`,
-            }}
-          />
-          <div className="relative z-10">
+          <div>
             <h3 className="text-2xl font-bold text-white mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
               {project.title}
             </h3>
-            <p className="text-sm text-white/50">{project.desc}</p>
+            <p className="text-sm text-white/50 mb-3">{project.desc}</p>
+            <div className="flex gap-4 text-sm">
+              <div>
+                <span className="text-muted-foreground">Hotel Name: </span>
+                <span className="text-white font-medium">{project.hotelName}</span>
+              </div>
+              <div>
+                <span className="text-muted-foreground">Location: </span>
+                <span className="text-white font-medium">{project.location}</span>
+              </div>
+            </div>
           </div>
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 p-2 rounded-full text-white/40 hover:text-white hover:bg-white/10 transition-all"
-          >
-            <X size={18} />
-          </button>
         </div>
+
+        {/* Video (if available) */}
+        {project.video && (
+          <div className="p-6 border-b border-white/10">
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground/50 mb-3">Project Video</p>
+            <div className="aspect-video bg-black/40 rounded-lg overflow-hidden">
+              <img
+                src={project.video}
+                alt={`${project.title} video`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        )}
 
         {/* Body */}
         <div className="p-6 space-y-6">
