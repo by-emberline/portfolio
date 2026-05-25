@@ -1,75 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700;1,800&family=Syne:wght@700;800&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@600;700&display=swap');
-@import "tailwindcss";
-@plugin "@tailwindcss/typography";
 
-@custom-variant dark (&:is(.dark *));
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme inline {
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
-
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
-  --color-card-border: hsl(var(--card-border));
-
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
-  --color-popover-border: hsl(var(--popover-border));
-
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
-  --color-primary-border: var(--primary-border);
-
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
-  --color-secondary-border: var(--secondary-border);
-
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
-  --color-muted-border: var(--muted-border);
-
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
-  --color-accent-border: var(--accent-border);
-
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
-  --color-destructive-border: var(--destructive-border);
-
-  --color-chart-1: hsl(var(--chart-1));
-  --color-chart-2: hsl(var(--chart-2));
-  --color-chart-3: hsl(var(--chart-3));
-  --color-chart-4: hsl(var(--chart-4));
-  --color-chart-5: hsl(var(--chart-5));
-
-  --color-sidebar: hsl(var(--sidebar));
-  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
-  --color-sidebar-border: hsl(var(--sidebar-border));
-  --color-sidebar-primary: hsl(var(--sidebar-primary));
-  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
-  --color-sidebar-primary-border: var(--sidebar-primary-border);
-  --color-sidebar-accent: hsl(var(--sidebar-accent));
-  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
-  --color-sidebar-accent-border: var(--sidebar-accent-border);
-  --color-sidebar-ring: hsl(var(--sidebar-ring));
-
-  --font-sans: var(--app-font-sans);
-  --font-serif: var(--app-font-serif);
-  --font-mono: var(--app-font-mono);
-
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-
-  /* Override animations to prevent steps() timing conflicts with framer-motion */
-  --animate-spin: spin 1s linear infinite;
-  --animate-ping: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-  --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  --animate-bounce: bounce 1s infinite;
+/* Force Tailwind to generate color utilities from our theme */
+@layer components {
+  .bg-background { background-color: hsl(var(--background)); }
+  .text-foreground { color: hsl(var(--foreground)); }
+  .bg-card { background-color: hsl(var(--card)); }
+  .text-card-foreground { color: hsl(var(--card-foreground)); }
+  .bg-primary { background-color: hsl(var(--primary)); }
+  .text-primary-foreground { color: hsl(var(--primary-foreground)); }
+  .bg-secondary { background-color: hsl(var(--secondary)); }
+  .text-secondary-foreground { color: hsl(var(--secondary-foreground)); }
+  .bg-muted { background-color: hsl(var(--muted)); }
+  .text-muted-foreground { color: hsl(var(--muted-foreground)); }
+  .bg-accent { background-color: hsl(var(--accent)); }
+  .text-accent-foreground { color: hsl(var(--accent-foreground)); }
+  .border-border { border-color: hsl(var(--border)); }
 }
 
 /* ============================================================
@@ -81,6 +30,18 @@
   --opaque-button-border-intensity: 9;
   --elevate-1: rgba(255,255,255,.04);
   --elevate-2: rgba(255,255,255,.09);
+
+  --background: 228 50% 4%;
+  --card: 228 30% 12%;
+  --popover: 228 30% 12%;
+  --primary: 190 90% 60%;
+  --secondary: 228 30% 20%;
+  --border: 190 30% 35%;
+  --input: 228 30% 12%;
+  --ring: 190 90% 60%;
+  --muted: 228 15% 25%;
+  --accent: 190 85% 55%;
+  --sidebar: 228 30% 12%;
 
   --foreground: 0 0% 98%;
   --card-foreground: 0 0% 98%;
@@ -107,177 +68,193 @@
   --tracking-normal: 0em;
   --spacing: 0.25rem;
 
+  --card-border: 190 90% 50%;
+  --popover-border: 190 90% 50%;
+  --sidebar-foreground: 0 0% 98%;
+  --sidebar-border: 190 30% 35%;
+  --sidebar-primary: 190 90% 60%;
+  --sidebar-primary-foreground: 228 50% 4%;
+  --sidebar-accent: 190 85% 55%;
+  --sidebar-accent-foreground: 228 50% 4%;
+  --sidebar-ring: 190 90% 60%;
   --sidebar-primary-border: hsl(var(--sidebar-primary));
   --sidebar-accent-border: hsl(var(--sidebar-accent));
+  --primary-foreground: 228 50% 4%;
   --primary-border: hsl(var(--primary));
   --secondary-border: hsl(var(--secondary));
   --muted-border: hsl(var(--muted));
   --accent-border: hsl(var(--accent));
   --destructive-border: hsl(var(--destructive));
+  --chart-1: 190 90% 60%;
+  --chart-2: 190 75% 50%;
+  --chart-3: 190 60% 45%;
+  --chart-4: 200 50% 40%;
+  --chart-5: 210 45% 35%;
 }
 
 /* ============================================================
-   THEME: OCEAN (default) — Deep Navy + Electric Cyan
+   THEME: OCEAN (Cyan/Turquoise)
    ============================================================ */
-:root, .dark, [data-theme="ocean"] {
+:root[data-theme="ocean"], .dark[data-theme="ocean"] {
   --background: 228 50% 4%;
-  --border: 228 30% 12%;
-  --card: 228 40% 6%;
-  --card-border: 228 30% 12%;
-  --popover: 228 40% 6%;
-  --popover-border: 228 30% 12%;
+  --card: 228 30% 12%;
+  --card-border: 190 90% 50%;
+  --popover: 228 30% 12%;
+  --popover-border: 190 90% 50%;
   --primary: 190 90% 60%;
   --primary-foreground: 228 50% 4%;
-  --secondary: 228 20% 15%;
-  --muted: 228 20% 12%;
-  --accent: 280 80% 65%;
-  --input: 228 30% 15%;
+  --secondary: 228 30% 20%;
+  --secondary-foreground: 190 90% 60%;
+  --border: 190 30% 35%;
+  --input: 228 30% 12%;
   --ring: 190 90% 60%;
+  --muted: 228 15% 25%;
+  --accent: 190 85% 55%;
   --chart-1: 190 90% 60%;
-  --chart-2: 280 80% 65%;
-  --chart-3: 160 80% 50%;
-  --chart-4: 40 90% 60%;
-  --chart-5: 340 80% 65%;
-  --sidebar: 228 50% 4%;
+  --chart-2: 190 75% 50%;
+  --chart-3: 190 60% 45%;
+  --chart-4: 200 50% 40%;
+  --chart-5: 210 45% 35%;
+  --sidebar: 228 30% 12%;
   --sidebar-foreground: 0 0% 98%;
-  --sidebar-border: 228 30% 12%;
+  --sidebar-border: 190 30% 35%;
   --sidebar-primary: 190 90% 60%;
   --sidebar-primary-foreground: 228 50% 4%;
-  --sidebar-accent: 228 20% 15%;
-  --sidebar-accent-foreground: 0 0% 98%;
+  --sidebar-accent: 190 85% 55%;
+  --sidebar-accent-foreground: 228 50% 4%;
   --sidebar-ring: 190 90% 60%;
 }
 
 /* ============================================================
-   THEME: VIOLET — Deep Dark + Royal Purple
+   THEME: VIOLET (Purple)
    ============================================================ */
-[data-theme="violet"] {
-  --background: 260 45% 4%;
-  --border: 260 25% 12%;
-  --card: 260 35% 6%;
-  --card-border: 260 25% 12%;
-  --popover: 260 35% 6%;
-  --popover-border: 260 25% 12%;
-  --primary: 265 85% 68%;
-  --primary-foreground: 260 45% 4%;
-  --secondary: 260 20% 15%;
-  --muted: 260 20% 12%;
-  --muted-foreground: 260 10% 65%;
-  --accent: 310 75% 65%;
-  --input: 260 25% 15%;
-  --ring: 265 85% 68%;
-  --chart-1: 265 85% 68%;
-  --chart-2: 310 75% 65%;
-  --chart-3: 190 80% 55%;
-  --chart-4: 40 90% 60%;
-  --chart-5: 340 80% 65%;
-  --sidebar: 260 45% 4%;
+:root[data-theme="violet"], .dark[data-theme="violet"] {
+  --background: 228 50% 4%;
+  --card: 260 30% 12%;
+  --card-border: 270 90% 55%;
+  --popover: 260 30% 12%;
+  --popover-border: 270 90% 55%;
+  --primary: 270 90% 60%;
+  --primary-foreground: 228 50% 4%;
+  --secondary: 260 30% 20%;
+  --secondary-foreground: 270 90% 60%;
+  --border: 270 30% 35%;
+  --input: 260 30% 12%;
+  --ring: 270 90% 60%;
+  --muted: 260 15% 25%;
+  --accent: 280 85% 55%;
+  --chart-1: 270 90% 60%;
+  --chart-2: 270 75% 50%;
+  --chart-3: 270 60% 45%;
+  --chart-4: 280 50% 40%;
+  --chart-5: 290 45% 35%;
+  --sidebar: 260 30% 12%;
   --sidebar-foreground: 0 0% 98%;
-  --sidebar-border: 260 25% 12%;
-  --sidebar-primary: 265 85% 68%;
-  --sidebar-primary-foreground: 260 45% 4%;
-  --sidebar-accent: 260 20% 15%;
-  --sidebar-accent-foreground: 0 0% 98%;
-  --sidebar-ring: 265 85% 68%;
+  --sidebar-border: 270 30% 35%;
+  --sidebar-primary: 270 90% 60%;
+  --sidebar-primary-foreground: 228 50% 4%;
+  --sidebar-accent: 280 85% 55%;
+  --sidebar-accent-foreground: 228 50% 4%;
+  --sidebar-ring: 270 90% 60%;
 }
 
 /* ============================================================
-   THEME: ROSE — Deep Dark + Warm Rose/Coral
+   THEME: ROSE (Pink/Magenta)
    ============================================================ */
-[data-theme="rose"] {
-  --background: 345 45% 4%;
-  --border: 345 25% 12%;
-  --card: 345 35% 6%;
-  --card-border: 345 25% 12%;
-  --popover: 345 35% 6%;
-  --popover-border: 345 25% 12%;
-  --primary: 340 85% 65%;
-  --primary-foreground: 345 45% 4%;
-  --secondary: 345 20% 15%;
-  --muted: 345 20% 12%;
-  --muted-foreground: 345 10% 65%;
-  --accent: 15 90% 62%;
-  --input: 345 25% 15%;
-  --ring: 340 85% 65%;
-  --chart-1: 340 85% 65%;
-  --chart-2: 15 90% 62%;
-  --chart-3: 280 70% 65%;
-  --chart-4: 40 90% 60%;
-  --chart-5: 190 80% 55%;
-  --sidebar: 345 45% 4%;
+:root[data-theme="rose"], .dark[data-theme="rose"] {
+  --background: 228 50% 4%;
+  --card: 330 30% 12%;
+  --card-border: 340 90% 55%;
+  --popover: 330 30% 12%;
+  --popover-border: 340 90% 55%;
+  --primary: 340 90% 60%;
+  --primary-foreground: 228 50% 4%;
+  --secondary: 330 30% 20%;
+  --secondary-foreground: 340 90% 60%;
+  --border: 340 30% 35%;
+  --input: 330 30% 12%;
+  --ring: 340 90% 60%;
+  --muted: 330 15% 25%;
+  --accent: 350 85% 55%;
+  --chart-1: 340 90% 60%;
+  --chart-2: 340 75% 50%;
+  --chart-3: 340 60% 45%;
+  --chart-4: 350 50% 40%;
+  --chart-5: 360 45% 35%;
+  --sidebar: 330 30% 12%;
   --sidebar-foreground: 0 0% 98%;
-  --sidebar-border: 345 25% 12%;
-  --sidebar-primary: 340 85% 65%;
-  --sidebar-primary-foreground: 345 45% 4%;
-  --sidebar-accent: 345 20% 15%;
-  --sidebar-accent-foreground: 0 0% 98%;
-  --sidebar-ring: 340 85% 65%;
+  --sidebar-border: 340 30% 35%;
+  --sidebar-primary: 340 90% 60%;
+  --sidebar-primary-foreground: 228 50% 4%;
+  --sidebar-accent: 350 85% 55%;
+  --sidebar-accent-foreground: 228 50% 4%;
+  --sidebar-ring: 340 90% 60%;
 }
 
 /* ============================================================
-   THEME: EMERALD — Deep Dark + Lush Green
+   THEME: EMERALD (Green)
    ============================================================ */
-[data-theme="emerald"] {
-  --background: 158 45% 3%;
-  --border: 158 25% 10%;
-  --card: 158 35% 5%;
-  --card-border: 158 25% 10%;
-  --popover: 158 35% 5%;
-  --popover-border: 158 25% 10%;
-  --primary: 152 75% 50%;
-  --primary-foreground: 158 45% 3%;
-  --secondary: 158 20% 12%;
-  --muted: 158 20% 10%;
-  --muted-foreground: 158 10% 62%;
-  --accent: 190 85% 55%;
-  --input: 158 25% 12%;
-  --ring: 152 75% 50%;
-  --chart-1: 152 75% 50%;
-  --chart-2: 190 85% 55%;
-  --chart-3: 265 80% 65%;
-  --chart-4: 40 90% 60%;
-  --chart-5: 340 80% 65%;
-  --sidebar: 158 45% 3%;
+:root[data-theme="emerald"], .dark[data-theme="emerald"] {
+  --background: 228 50% 4%;
+  --card: 140 30% 12%;
+  --card-border: 150 90% 45%;
+  --popover: 140 30% 12%;
+  --popover-border: 150 90% 45%;
+  --primary: 150 90% 55%;
+  --primary-foreground: 228 50% 4%;
+  --secondary: 140 30% 20%;
+  --secondary-foreground: 150 90% 55%;
+  --border: 150 30% 35%;
+  --input: 140 30% 12%;
+  --ring: 150 90% 55%;
+  --muted: 140 15% 25%;
+  --accent: 160 85% 50%;
+  --chart-1: 150 90% 55%;
+  --chart-2: 150 75% 45%;
+  --chart-3: 150 60% 40%;
+  --chart-4: 160 50% 35%;
+  --chart-5: 170 45% 30%;
+  --sidebar: 140 30% 12%;
   --sidebar-foreground: 0 0% 98%;
-  --sidebar-border: 158 25% 10%;
-  --sidebar-primary: 152 75% 50%;
-  --sidebar-primary-foreground: 158 45% 3%;
-  --sidebar-accent: 158 20% 12%;
-  --sidebar-accent-foreground: 0 0% 98%;
-  --sidebar-ring: 152 75% 50%;
+  --sidebar-border: 150 30% 35%;
+  --sidebar-primary: 150 90% 55%;
+  --sidebar-primary-foreground: 228 50% 4%;
+  --sidebar-accent: 160 85% 50%;
+  --sidebar-accent-foreground: 228 50% 4%;
+  --sidebar-ring: 150 90% 55%;
 }
 
 /* ============================================================
-   THEME: AMBER — Deep Dark + Rich Gold
+   THEME: AMBER (Orange/Gold)
    ============================================================ */
-[data-theme="amber"] {
-  --background: 30 40% 4%;
-  --border: 30 25% 12%;
-  --card: 30 35% 6%;
-  --card-border: 30 25% 12%;
-  --popover: 30 35% 6%;
-  --popover-border: 30 25% 12%;
-  --primary: 38 95% 58%;
-  --primary-foreground: 30 40% 4%;
-  --secondary: 30 20% 14%;
-  --muted: 30 20% 11%;
-  --muted-foreground: 30 10% 62%;
-  --accent: 16 90% 58%;
-  --input: 30 25% 14%;
-  --ring: 38 95% 58%;
-  --chart-1: 38 95% 58%;
-  --chart-2: 16 90% 58%;
-  --chart-3: 152 70% 45%;
-  --chart-4: 265 80% 65%;
-  --chart-5: 340 80% 65%;
-  --sidebar: 30 40% 4%;
+:root[data-theme="amber"], .dark[data-theme="amber"] {
+  --background: 228 50% 4%;
+  --card: 30 30% 12%;
+  --card-border: 40 90% 55%;
+  --popover: 30 30% 12%;
+  --popover-border: 40 90% 55%;
+  --primary: 40 90% 58%;
+  --primary-foreground: 228 50% 4%;
+  --secondary: 30 30% 20%;
+  --secondary-foreground: 40 90% 58%;
+  --border: 40 30% 35%;
+  --input: 30 30% 12%;
+  --ring: 40 90% 58%;
+  --muted: 30 15% 25%;
+  --accent: 50 85% 53%;
+  --chart-1: 40 90% 58%;
+  --chart-2: 40 75% 48%;
+  --chart-3: 40 60% 43%;
+  --chart-4: 50 50% 38%;
+  --chart-5: 60 45% 33%;
+  --sidebar: 30 30% 12%;
   --sidebar-foreground: 0 0% 98%;
-  --sidebar-border: 30 25% 12%;
-  --sidebar-primary: 38 95% 58%;
-  --sidebar-primary-foreground: 30 40% 4%;
-  --sidebar-accent: 30 20% 14%;
-  --sidebar-accent-foreground: 0 0% 98%;
-  --sidebar-ring: 38 95% 58%;
+  --sidebar-border: 40 30% 35%;
+  --sidebar-primary: 40 90% 58%;
+  --sidebar-primary-foreground: 228 50% 4%;
+  --sidebar-accent: 50 85% 53%;
+  --sidebar-accent-foreground: 228 50% 4%;
+  --sidebar-ring: 40 90% 58%;
 }
 
 @layer base {
@@ -301,7 +278,6 @@
     pointer-events: none;
   }
 
-  /* iOS 26 Liquid Glass */
   .glass-card {
     background: rgba(255, 255, 255, 0.07);
     backdrop-filter: blur(40px) saturate(180%) brightness(110%);
@@ -315,37 +291,12 @@
       inset 1px 0 rgba(255, 255, 255, 0.08),
       inset -1px 0 rgba(255, 255, 255, 0.05);
   }
-  .glass-panel {
-    background: rgba(0, 0, 0, 0.35);
-    backdrop-filter: blur(48px) saturate(160%);
-    -webkit-backdrop-filter: blur(48px) saturate(160%);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  /* Inline liquid glass helper (for JS inline styles to match) */
-  .liquid-glass {
-    background: rgba(255, 255, 255, 0.07);
-    backdrop-filter: blur(40px) saturate(180%) brightness(110%);
-    -webkit-backdrop-filter: blur(40px) saturate(180%) brightness(110%);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow:
-      0 8px 40px rgba(0, 0, 0, 0.45),
-      0 2px 8px rgba(0, 0, 0, 0.2),
-      inset 0 1.5px 0 rgba(255, 255, 255, 0.24),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.14),
-      inset 1px 0 rgba(255, 255, 255, 0.09),
-      inset -1px 0 rgba(255, 255, 255, 0.05);
-  }
 }
 
-/* Override animations to prevent framer-motion conflicts */
+/* Override animations */
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .animate-spin {
